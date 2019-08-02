@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="TGIF.css">
+</head>
+
+<body>
+    <div id="vue-table" class="container formato_pagina">
+                    <div class="row">
+                      <div class="col-sm-4"><a href="#"><img class="img-responsive" src="descarga.png" alt="Logotipo TGIF"></a></div>
+                      <div class="col-sm-8 text-right"><a href="mailto:sduarteh46@gmail.com">info@tgif.net</a></div>
+                
+                    </div>
+                    <div class="grisEncabezado negritaMenu">
+                      <div class="navbar grisEncabezado">
+                          <ul class="nav navbar-default">
+                              <li class="col-sm-3"><a href="home.html">Home</a></li>
+                              <li class="dropdown, col-sm-3"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Congress 113<strong
+                                    class="caret"></strong></a>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li><a href="house-page2.html">House</a></li>
+                                  <li><a href="senate-page.html">Senate</a></li>
+                                </ul>
+                              </li>
+                              <li class="dropdown, col-sm-3"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> Attendance<strong
+                                    class="caret"></strong></a>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li><a href="house_attendance.html">House</a></li>
+                                  <li><a href="senate-attendance.html">Senate</a></li>
+                                </ul>
+                              </li>
+                              <li class="dropdown, col-sm-3"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Party Loyalty<strong
+                                    class="caret"></strong></a>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li><a href="house-party-loyalty.html">House</a></li>
+                                  <li><a href="senate-loyalty.html">Senate</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                      </div>
+                    </div>
+
+
+
+
+            
+        <!--Table container-->
+        <div class="espacioH2">
+            <h2>Senators</h2>
+            <p class="justificado">First convened in 1789, the composition and powers of the Senate are established in Article One of the
+                U.S.
+                Constitution. Each state is represented by two senators, regardless of population, who serve staggered
+                six-year terms. The Senate has several exclusive powers not granted to the House, including consenting
+                to
+                treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet
+                secretaries, federal judges, other federal executive officials, military officers, regulatory officials,
+                ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by
+                the
+                House.</p>
+        </div>
+        <div>
+            <div class="filtrosEnLinea">
+                    <div>
+                            <form action="" id="checkboxes">
+                                <label>Filter by Party: </label>
+                                <input @change="filtrarTodos()"  type="checkbox" value="R"
+                                    id="republicanCheckbox" name="republican" v-model="partidosFiltrados">
+                                <label>Republican</label>
+                                <input @change="filtrarTodos()"  type="checkbox" value="D" id="democrat"
+                                    name="democrat" v-model="partidosFiltrados">
+
+                                <label>Democrat</label>
+                                <input @change="filtrarTodos()"  type="checkbox" value="I" id="independent"
+                                    name="independent" v-model="partidosFiltrados">
+
+                                <label>Independent</label>
+                            </form>
+            
+                        </div>
+                        <div>
+                            <label >Select By States  
+                            </label>   
+                            <select id="stateSelection" @change="filtrarTodos()" v-model="stateSelected">
+                                <option value="all">All</option>
+                                <option v-bind:value= "estado" v-for="estado in estados"> {{  estado  }}</option>
+        
+                                </select>
+            
+                        </div>
+                    
+            </div>
+
+        </div>
+
+        <div class="table-responsive ">
+            <table class="table header-fixed table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Congressmen</th>
+                        <th>Party Affiliation</th>
+                        <th>State</th>
+                        <th>Years in Office</th>
+                        <th>% Votes with Party</th>
+                    </tr>
+                </thead>
+                <tbody class="table-bordered">
+                    <tr v-for="miembro in miembrosAlt"> 
+
+                        <td class="negritaMenu"><a :href="miembro.url" >{{ checkName(miembro) }}</a></td>
+                        <td>{{ miembro.party }}</td>
+                        <td>{{ miembro.state }}</td>
+                        <td>{{ miembro.seniority }}</td>
+                        <td>{{ miembro.votes_with_party_pct }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 gris">
+            <div>
+                <p class="text-center negritaMenu">TGIF 2019|All Rights Reserved</p>
+            </div>
+        </div>
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="vueTGIF.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+
+</html>

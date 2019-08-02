@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="TGIF.css">
+</head>
+
+<body>
+    <div id="vue-table" class="container formato_pagina">
+        
+            <div class="row">
+                <div class="col-sm-4"><a href="#"><img class="img-responsive" src="descarga.png"
+                            alt="Logotipo TGIF"></a></div>
+                <div class="col-sm-8 text-right"><a href="mailto:sduarteh46@gmail.com">info@tgif.net</a></div>
+
+            </div>
+            <div class="grisEncabezado">
+                <div class="navbar grisEncabezado">
+                    <ul class="nav navbar-default">
+                        <li class="col-sm-3"><a href="home.html">Home</a></li>
+                        <li class="dropdown, col-sm-3"><a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown">Congress 113<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="house-page.html">House</a></li>
+                                <li><a href="senate-page.html">Senate</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown, col-sm-3"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Attendance<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="house_attendance.html">House</a></li>
+                                <li><a href="senate-attendance.html">Senate</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown, col-sm-3"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Party
+                                Loyalty<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="house-party-loyalty.html">House</a></li>
+                                <li><a href="senate-loyalty.html">Senate</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+
+        <!--Table container-->
+        <div>
+            <h2>Congressmen</h2>
+            <p class="justificado">The major power of the House is to pass federal legislation that affects the entire
+                country, although its
+                bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law
+                (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber).
+                The
+                House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached
+                officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no
+                majority in the Electoral College.</p>
+            <p>Each U.S. state is represented in the House in proportion to its population as measured in the census,
+                but
+                every state is entitled to at least one representative. </p>
+            <div>
+                <div>
+                    <form action="" id="checkboxes">
+                        <label>Filter by Party: </label>
+                        <label>Republican</label>
+                        <input @change="filtrarTodos()" type="checkbox" value="R" id="republicanCheckbox"
+                            name="republican" v-model="partidosFiltrados">
+                        <label>Democrat</label>
+                        <input @change="filtrarTodos()" type="checkbox" value="D" id="democrat" name="democrat"
+                            v-model="partidosFiltrados">
+                        <label>Independent</label>
+                        <input @change="filtrarTodos()" type="checkbox" value="I" id="independent" name="independent"
+                            v-model="partidosFiltrados">
+                    </form>
+
+                </div>
+                <div>
+                    <label>Select By States
+                    </label>
+                    <select id="stateSelection" @change="filtrarTodos()" v-model="stateSelected">
+                        <option value="all">All</option>
+                        <option v-bind:value="estado" v-for="estado in estados"> {{  estado  }}</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table header-fixed  table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Congressmen</th>
+                            <th>Party Affiliation</th>
+                            <th>State</th>
+                            <th>Years in Office</th>
+                            <th>% Votes with Party</th>
+                        </tr>
+                    </thead>
+                    <tbody class=" table-bordered">
+                        <tr v-for="miembro in miembrosAlt">
+
+                            <td><a :href=" miembro.url ">{{ checkName(miembro) }}</a></td>
+                            <td>{{ miembro.party }}</td>
+                            <td>{{ miembro.state }}</td>
+                            <td>{{ miembro.seniority }}</td>
+                            <td>{{ miembro.votes_with_party_pct }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="vueTGIF.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
